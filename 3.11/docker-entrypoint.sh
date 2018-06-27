@@ -1,4 +1,9 @@
 #!/bin/bash
+# File: docker-entrypoint.sh
+# Author: Khuong Nguyen <khuong@inspectorio.com>
+# Date: 27.06.2018
+# Last Modified Date: 27.06.2018
+# Last Modified By: Khuong Nguyen <khuong@inspectorio.com>
 set -e
 
 # first arg is `-f` or `--some-option`
@@ -56,6 +61,7 @@ if [ "$1" = 'cassandra' ]; then
 		num_tokens \
 		rpc_address \
 		start_rpc \
+        enable_user_defined_functions \
 	; do
 		var="CASSANDRA_${yaml^^}"
 		val="${!var}"
