@@ -45,6 +45,10 @@ if [ "$1" = 'cassandra' ]; then
 	fi
 	: ${CASSANDRA_SEEDS:="$CASSANDRA_BROADCAST_ADDRESS"}
 	
+	file_template="/opt/cassandra_conf/cassandra.yaml"
+	if [ -s "$file_template" ]; then
+		cp -f "$file_template" "$CASSANDRA_CONFIG/cassandra.yaml"
+	fi 
 	sed -ri 's/(- seeds:).*/\1 "'"$CASSANDRA_SEEDS"'"/' "$CASSANDRA_CONFIG/cassandra.yaml"
 
 	for yaml in \
